@@ -1,0 +1,37 @@
+;;------------------------------------------------------------------------------
+;; Cask and Pallet Configuration
+
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(cask-initialize)
+
+;; Keep installed packages in sync with ~/.emacs.d/Cask file
+(pallet-mode t)
+
+;;------------------------------------------------------------------------------
+;; Global Config
+
+;; Theme:
+(load-theme 'zenburn t)
+
+;; Paredit
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
+(add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
+
+;; Projectile everywhere
+(projectile-global-mode)
+
+;; Helm
+(require 'helm-config)
+(require 'helm)
+
+(helm-mode 1)                                     ; Use helm by default
+(global-set-key (kbd "C-x C-f") 'helm-find-files) ; Use helm for files
+(helm-autoresize-mode 1)                          ; Autosize helm buffer
+
+;; Helm Projectile
+(helm-projectile-on)
+
+;; Undo tree everywhere
+(global-undo-tree-mode)
