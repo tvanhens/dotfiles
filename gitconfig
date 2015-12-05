@@ -1,2 +1,5 @@
 [core]
 	excludesfile = /Users/tvanhens/.dotfiles/gitignore_global
+[user]
+	name = Tyler van Hensbergen
+	email = tvanhens@gmail.com
