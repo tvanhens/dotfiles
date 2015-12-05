@@ -3,3 +3,5 @@
 [user]
 	name = Tyler van Hensbergen
 	email = tvanhens@gmail.com
+[push]
+	default = simple
