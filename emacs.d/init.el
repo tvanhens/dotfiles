@@ -35,3 +35,9 @@
 
 ;; Undo tree everywhere
 (global-undo-tree-mode)
+
+;; Magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;; Company mode
+(add-hook 'after-init-hook 'global-company-mode)
