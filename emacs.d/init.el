@@ -10,6 +10,9 @@
 ;;------------------------------------------------------------------------------
 ;; Global Config
 
+;; Indent
+(global-set-key (kbd "C-c n") 'indent-region)
+
 ;; Theme:
 (load-theme 'zenburn t)
 
@@ -40,4 +43,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Company mode
-(add-hook 'after-init-hook 'global-company-mode)
+(global-company-mode)
+
+;; Cider
+(add-hook 'cider-mode-hook #'eldoc-mode)
