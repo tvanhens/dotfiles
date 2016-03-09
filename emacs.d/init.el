@@ -10,6 +10,10 @@
 ;;------------------------------------------------------------------------------
 ;; Global Config
 
+;; Disable Backup
+(setq backup-inhibited t)
+(setq auto-save-default nil) ; Autosave
+
 ;; Indent
 (global-set-key (kbd "C-c n") 'indent-region)
 
@@ -41,9 +45,50 @@
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
+(setq magit-push-always-verify nil) ; Don't always verify
 
 ;; Company mode
 (global-company-mode)
 
 ;; Cider
 (add-hook 'cider-mode-hook #'eldoc-mode)
+
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;;------------------------------------------------------------------------------
+;; Markdown
+
+(defun bind-markdown-keys ()
+  (local-set-key (kbd "C-c k") 'gh-md-render-buffer))
+
+(add-hook 'markdown-mode-hook #'bind-markdown-keys)
+
+;;------------------------------------------------------------------------------
+;; Javascript
+
+(setq js-indent-level 2)
+
+;;------------------------------------------------------------------------------
+;; Clojure Indentation
+
+(require 'clojure-mode)
+
+(put-clojure-indent 'match 1)
+
+;;------------------------------------------------------------------------------
+;; Keybindings
+
+(require 'ace-window)
+(global-set-key (kbd "C-x o") 'ace-window)
+
+;;------------------------------------------------------------------------------
+;; Winner Mode
+
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+
+;;-----------------------------------------------------------------------------
+;; Environment
+
+(load-file "~/.emacs.d/.env.el")
