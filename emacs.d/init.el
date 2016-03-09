@@ -10,9 +10,11 @@
 ;;------------------------------------------------------------------------------
 ;; Global Config
 
-;; Disable Backup
-(setq backup-inhibited t)
-(setq auto-save-default nil) ; Autosave
+;; Autosave to /tmp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; Indent
 (global-set-key (kbd "C-c n") 'indent-region)
