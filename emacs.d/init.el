@@ -89,8 +89,3 @@
 
 (when (fboundp 'winner-mode)
   (winner-mode 1))
-
-;;-----------------------------------------------------------------------------
-;; Environment
-
-(load-file "~/.emacs.d/.env.el")
