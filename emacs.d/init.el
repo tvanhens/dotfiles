@@ -10,6 +10,9 @@
 ;;------------------------------------------------------------------------------
 ;; Global Config
 
+;; Stop visible alert
+(setq ring-bell-function 'ignore)
+
 ;; Autosave to /tmp
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
