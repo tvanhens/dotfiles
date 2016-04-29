@@ -92,3 +92,10 @@
 
 (when (fboundp 'winner-mode)
   (winner-mode 1))
+
+;;------------------------------------------------------------------------------
+;; Default Text Scale
+
+(require 'default-text-scale)
+(global-set-key (kbd "C-M-=") 'default-text-scale-increase)
+(global-set-key (kbd "C-M--") 'default-text-scale-decrease)

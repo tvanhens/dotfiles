@@ -11,6 +11,7 @@
 (depends-on "clojure-mode")
 (depends-on "company")
 (depends-on "dash")
+(depends-on "default-text-scale")
 (depends-on "diminish")
 (depends-on "drag-stuff")
 (depends-on "exec-path-from-shell")
