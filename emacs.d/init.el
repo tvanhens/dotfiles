@@ -10,6 +10,9 @@
 ;;------------------------------------------------------------------------------
 ;; Global Config
 
+;; Load path
+(add-to-list 'load-path "/usr/local/bin")
+
 ;; Stop visible alert
 (setq ring-bell-function 'ignore)
 
