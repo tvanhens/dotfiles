@@ -11,6 +11,7 @@
 ;; Custom Configuration
 
 (load-file "./.emacs.d/clojure.el")
+(load-file "./.emacs.d/elisp.el")
 
 ;;------------------------------------------------------------------------------
 ;; Global Config
