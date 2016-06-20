@@ -7,3 +7,4 @@ emacs.d/eshell
 /emacs.d/games/tetris-scores
 /emacs.d/projectile.cache
 /emacs.d/.env.el
+/emacs.d/ac-comphist.dat
