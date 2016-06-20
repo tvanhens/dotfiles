@@ -8,6 +8,11 @@
 (pallet-mode t)
 
 ;;------------------------------------------------------------------------------
+;; Custom Configuration
+
+(load-file "./.emacs.d/clojure.el")
+
+;;------------------------------------------------------------------------------
 ;; Global Config
 (global-set-key [f5] 'call-last-kbd-macro)
 
@@ -96,54 +101,6 @@
 ;; Javascript
 
 (setq js-indent-level 2)
-
-;;------------------------------------------------------------------------------
-;; Clojure
-(require 'rainbow-delimiters)
-
-;; Indentation
-
-(require 'clojure-mode)
-
-(put-clojure-indent 'match 1)
-
-;; Clj-Refactor
-(require 'clj-refactor)
-
-(defun my-clojure-mode-hook ()
-    (clj-refactor-mode 1)
-    (yas-minor-mode 1) ; for adding require/use/import statements
-    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-    (cljr-add-keybindings-with-prefix "C-c C-m"))
-
-;; Align clojure forms vertically automatically
-(setq clojure-align-forms-automatically t)
-
-(defun clojure-format-on-save ()
-  (indent-region (point-min) (point-max)))
-
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            ;; Format the buffer on save
-            (add-hook 'before-save-hook 'clojure-format-on-save nil 'make-it-local)
-
-            ;; Delete trailing whitespace on save
-            (add-hook 'before-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
-
-
-;; Consider making this local
-(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
-
-;; Cider
-(add-hook 'cider-mode-hook #'eldoc-mode)
-
-;; Smartparens
-(require 'smartparens-config)
-(add-hook 'clojure-mode-hook 'smartparens-strict-mode)
-(add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
-
-
-(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
