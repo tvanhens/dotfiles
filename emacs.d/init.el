@@ -9,6 +9,16 @@
 
 ;;------------------------------------------------------------------------------
 ;; Global Config
+(global-set-key [f5] 'call-last-kbd-macro)
+
+;; Logview
+(require 'logview)
+
+;; Start fullscreen
+(toggle-frame-fullscreen)
+
+;; Font
+(set-default-font "Inconsolata 18")
 
 ;; Load path
 (add-to-list 'load-path "/usr/local/bin")
@@ -56,7 +66,7 @@
 (setq magit-push-always-verify nil) ; Don't always verify
 
 ;; Company mode
-(global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Cider
 (add-hook 'cider-mode-hook #'eldoc-mode)
@@ -86,9 +96,6 @@
             (setq tab-width 4)
             (setq indent-tabs-mode 1)))
 
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-(ac-config-default)
 
 (setq company-tooltip-limit 20)
 (setq company-idle-delay .3)
@@ -135,3 +142,32 @@
 (require 'default-text-scale)
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ibuffer-saved-filter-groups nil)
+ '(ibuffer-saved-filters
+   (quote
+    (("gnus"
+      ((or
+        (mode . message-mode)
+        (mode . mail-mode)
+        (mode . gnus-group-mode)
+        (mode . gnus-summary-mode)
+        (mode . gnus-article-mode))))
+     ("programming"
+      ((or
+        (mode . emacs-lisp-mode)
+        (mode . cperl-mode)
+        (mode . c-mode)
+        (mode . java-mode)
+        (mode . idl-mode)
+        (mode . lisp-mode))))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
