@@ -68,10 +68,6 @@
 ;; Company mode
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Neo Tree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-
 ;;------------------------------------------------------------------------------
 ;; Go Mode
 
@@ -81,7 +77,6 @@
             (add-hook 'before-save-hook 'gofmt-before-save)
             (setq tab-width 4)
             (setq indent-tabs-mode 1)))
-
 
 (setq company-tooltip-limit 20)
 (setq company-idle-delay .3)

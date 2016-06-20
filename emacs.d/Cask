@@ -42,7 +42,6 @@
 (depends-on "markdown-mode+")
 (depends-on "monokai-theme")
 (depends-on "multiple-cursors")
-(depends-on "neotree")
 (depends-on "nginx-mode")
 (depends-on "nyan-mode")
 (depends-on "package-build")
