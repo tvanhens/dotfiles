@@ -38,12 +38,6 @@
 ;; Theme:
 (load-theme 'monokai t)
 
-;; Paredit
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'clojure-mode-hook #'enable-paredit-mode)
-(add-hook 'cider-repl-mode-hook #'enable-paredit-mode)
-
 ;; Projectile everywhere
 (projectile-global-mode)
 
@@ -140,7 +134,6 @@
 
 ;; Cider
 (add-hook 'cider-mode-hook #'eldoc-mode)
-
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
