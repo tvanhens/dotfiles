@@ -99,6 +99,7 @@
 
 ;;------------------------------------------------------------------------------
 ;; Clojure
+(require 'rainbow-delimiters)
 
 ;; Indentation
 
@@ -129,11 +130,20 @@
             ;; Delete trailing whitespace on save
             (add-hook 'before-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
 
+
 ;; Consider making this local
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
 ;; Cider
 (add-hook 'cider-mode-hook #'eldoc-mode)
+
+;; Smartparens
+(require 'smartparens-config)
+(add-hook 'clojure-mode-hook 'smartparens-strict-mode)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
+
+
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
