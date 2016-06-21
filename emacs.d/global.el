@@ -1,6 +1,10 @@
 ;;------------------------------------------------------------------------------
 ;; Global
 
+(setq custom-file (concat user-emacs-directory ".custom.el"))
+(ignore-errors
+  (load-file custom-file))
+
 ;; Show line numbers everywhere
 (global-linum-mode)
 

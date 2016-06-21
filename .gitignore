@@ -9,3 +9,4 @@ emacs.d/eshell
 /emacs.d/.env.el
 /emacs.d/ac-comphist.dat
 /emacs.d/eshell/**
+/emacs.d/.custom.el
