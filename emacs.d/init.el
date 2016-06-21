@@ -16,6 +16,7 @@
 
 ;;------------------------------------------------------------------------------
 ;; Global Config
+
 (global-set-key [f5] 'call-last-kbd-macro)
 
 ;; Logview
@@ -98,23 +99,3 @@
 ;; Javascript
 
 (setq js-indent-level 2)
-
-;;------------------------------------------------------------------------------
-;; Keybindings
-
-(require 'ace-window)
-(global-set-key (kbd "C-x o") 'ace-window)
-
-;;------------------------------------------------------------------------------
-;; Winner Mode
-
-(when (fboundp 'winner-mode)
-  (winner-mode 1))
-
-;;------------------------------------------------------------------------------
-;; Default Text Scale
-
-(require 'default-text-scale)
-(global-set-key (kbd "C-M-=") 'default-text-scale-increase)
-(global-set-key (kbd "C-M--") 'default-text-scale-decrease)
-(put 'set-goal-column 'disabled nil)
