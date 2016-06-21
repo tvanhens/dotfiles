@@ -25,9 +25,9 @@
   (cljr-add-keybindings-with-prefix "C-c C-m")
 
   ;; Local hooks
-
-  (add-hook 'before-save-hook 'tvanhens-clojure-format-on-save nil 'make-it-local)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace nil 'make-it-local))
+  ;; (add-hook 'before-save-hook 'tvanhens-clojure-format-on-save nil 'make-it-local)
+  ;; (add-hook 'before-save-hook 'delete-trailing-whitespace nil 'make-it-local)
+  )
 
 ;; Hooks
 
