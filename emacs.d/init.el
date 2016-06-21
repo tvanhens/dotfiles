@@ -10,9 +10,12 @@
 ;;------------------------------------------------------------------------------
 ;; Custom Configuration
 
-(load-file "./.emacs.d/global.el")
 (load-file "./.emacs.d/clojure.el")
 (load-file "./.emacs.d/elisp.el")
+(load-file "./.emacs.d/js.el")
+(load-file "./.emacs.d/global.el")
+(load-file "./.emacs.d/go.el")
+(load-file "./.emacs.d/markdown.el")
 
 ;;------------------------------------------------------------------------------
 ;; Global Config
@@ -94,8 +97,3 @@
   (local-set-key (kbd "C-c k") 'gh-md-render-buffer))
 
 (add-hook 'markdown-mode-hook #'bind-markdown-keys)
-
-;;------------------------------------------------------------------------------
-;; Javascript
-
-(setq js-indent-level 2)
