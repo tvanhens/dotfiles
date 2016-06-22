@@ -15,23 +15,15 @@
 
 ;; Utility functions
 
-(defun tvanhens-clojure-format-on-save ()
-  (indent-region (point-min) (point-max)))
-
-(defun tvanhens-clojure-mode-hook ()
+(defun tvh-clj-mode-hook ()
   (clj-refactor-mode 1)
   (yas-minor-mode 1) ; for adding require/use/import statements
   ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-  (cljr-add-keybindings-with-prefix "C-c C-m")
-
-  ;; Local hooks
-  ;; (add-hook 'before-save-hook 'tvanhens-clojure-format-on-save nil 'make-it-local)
-  ;; (add-hook 'before-save-hook 'delete-trailing-whitespace nil 'make-it-local)
-  )
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 ;; Hooks
 
 (add-hook 'cider-mode-hook 'eldoc-mode)
 (add-hook 'clojure-mode-hook 'smartparens-strict-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'clojure-mode-hook 'tvanhens-clojure-mode-hook)
+(add-hook 'clojure-mode-hook 'tvh-clj-mode-hook)

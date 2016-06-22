@@ -1,6 +1,7 @@
 ;;------------------------------------------------------------------------------
 ;; Global
 
+;; Set customizations file
 (setq custom-file (concat user-emacs-directory ".custom.el"))
 (ignore-errors
   (load-file custom-file))
@@ -87,3 +88,23 @@
 
 (require 'ace-window)
 (global-set-key (kbd "C-x o") 'ace-window)
+
+;; Format on save toggle
+(defun tvh-format-on-save ()
+  (indent-region (point-min) (point-max)))
+
+(defun tvh-toggle-format-on-save ()
+  (interactive)
+  (if (get 'tvh-toggle-format-on-save 'state)
+      (progn
+        (remove-hook 'before-save-hook 'tvh-toggle-format-on-save)
+        (remove-hook 'before-save-hook 'delete-trailing-whitespace)
+        (put 'tvh-toggle-format-on-save 'state nil)
+        (message "Format on save disabled"))
+    (progn
+      (add-hook 'before-save-hook 'tvh-format-on-save)
+      (add-hook 'before-save-hook 'delete-trailing-whitespace)
+      (put 'tvh-toggle-format-on-save 'state t)
+      (message "Format on save enabled"))))
+
+(global-set-key (kbd "C-c C-s") 'tvh-toggle-format-on-save)
