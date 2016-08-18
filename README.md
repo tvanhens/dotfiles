@@ -9,7 +9,57 @@ This repository contains my personal configurations for Zsh, tmux, Leiningen, an
 
 These guidelines make it convenient for other people to use and customize my dotfiles without having to fork the entire repository.
 
-A highly WIP Emacs reference follows.
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [dotfiles](#dotfiles)
+- [Emacs](#emacs)
+    - [Keyboard shortcut notation](#keyboard-shortcut-notation)
+    - [Run commands](#run-commands)
+    - [Getting help](#getting-help)
+    - [Manipulating buffers](#manipulating-buffers)
+        - [Switch to an already-open buffer](#switch-to-an-already-open-buffer)
+        - [Switch to a file within a project](#switch-to-a-file-within-a-project)
+        - [Switch to an arbitrary file, or a new file](#switch-to-an-arbitrary-file-or-a-new-file)
+        - [Delete a buffer](#delete-a-buffer)
+    - [Manipulating windows](#manipulating-windows)
+        - [Switch the buffer of a window](#switch-the-buffer-of-a-window)
+        - [Open windows](#open-windows)
+        - [Move between windows](#move-between-windows)
+        - [Close windows](#close-windows)
+    - [Moving within a buffer](#moving-within-a-buffer)
+        - [Move by characters](#move-by-characters)
+        - [Move within a line](#move-within-a-line)
+        - [Move through text](#move-through-text)
+        - [Move through Lisp code](#move-through-lisp-code)
+            - [`C-M-b` (back one form)](#c-m-b-back-one-form)
+            - [`C-M-f` (forward one form)](#c-m-f-forward-one-form)
+            - [`C-M-p` (descend backwards)](#c-m-p-descend-backwards)
+            - [`C-M-n` (ascend forwards)](#c-m-n-ascend-forwards)
+            - [`C-M-u` Ascend backwards](#c-m-u-ascend-backwards)
+            - [`C-M-d` (descend forwards)](#c-m-d-descend-forwards)
+            - [`C-M-a` (beginning of top-level form)](#c-m-a-beginning-of-top-level-form)
+            - [`C-M-e` (end of top-level form)](#c-m-e-end-of-top-level-form)
+        - [Jump to an arbitrary location on-screen](#jump-to-an-arbitrary-location-on-screen)
+        - [Move through the entire buffer](#move-through-the-entire-buffer)
+    - [Manipulating text](#manipulating-text)
+        - [Cutting (killing), copying, and pasting (yanking)](#cutting-killing-copying-and-pasting-yanking)
+        - [Undo and redo](#undo-and-redo)
+        - [Miscellaneous](#miscellaneous)
+    - [Interacting with Elisp code](#interacting-with-elisp-code)
+    - [Interacting with Clojure code](#interacting-with-clojure-code)
+        - [Starting a REPL](#starting-a-repl)
+        - [Interacting with the REPL](#interacting-with-the-repl)
+        - [Using the REPL](#using-the-repl)
+    - [Helm](#helm)
+- [Contributing](#contributing)
+    - [Documentation](#documentation)
+    - [Commit history](#commit-history)
+        - [Commit messages](#commit-messages)
+        - [Commit history](#commit-history)
+    - [Code style](#code-style)
+
+<!-- markdown-toc end -->
 
 # Emacs
 
@@ -27,6 +77,24 @@ A highly WIP Emacs reference follows.
 - `S-left` means press the left arrow key while holding Shift.
 - `s-f` means press the "F" key while holding Super. On Mac keyboards, Super is labeled Command.
 
+## Run commands
+
+Command | Action
+--- | ---
+`M-x` | Select a command to run using [`helm`](#helm)
+
+In Emacs, many commands are bound to keyboard shortcuts. However, there are many more commands than possible keyboard shortcuts, so you can instead run commands by name. Thanks to the `helm-smex` package, commands that you have used recently or frequently are placed near the top of the list of suggestions.
+
+## Getting help
+
+Command | Action
+--- | ---
+`C-h k` | Describe what a keybinding does
+`C-h f` | Get documentation for a function (select using [`helm`](#helm))
+`C-h v` | Get documentation for a variable (select using [`helm`](#helm))
+`C-h m` | Get documentation about the modes currently active
+`C-h t` | View the Emacs tutorial
+
 ## Manipulating buffers
 
 ### Switch to an already-open buffer
@@ -34,6 +102,8 @@ A highly WIP Emacs reference follows.
 Command | Action
 --- | ---
 `C-x b` | Switch the buffer of the current window using [`helm`](#helm)
+
+There is a [known issue](https://github.com/raxod502/dotfiles/issues/41) where sometimes `C-x b` starts using [`ido-mode`](#switch-to-an-arbitrary-file-or-a-new-file) instead of `helm`. If this happens, press `M-x helm-mode` to fix it. If you find out how to reproduce this behavior, [do tell](https://github.com/raxod502/dotfiles/issues/41)!
 
 ### Switch to a file within a project
 
@@ -312,7 +382,15 @@ Command | Action
 
 Note `C-k`, by default, will not kill the newline at the end of the line unless the line is empty. So, to kill a non-empty line you will have to do `C-a C-k C-k`.
 
-Most editors do not have the feature that Emacs provides with `M-y`, so an explanation is warranted. Whenever you want to yank some text, first press `C-y`. If you hadn't killed or copied anything since [...]
+See [Yanking Earlier Kills](https://www.gnu.org/software/emacs/manual/html_node/emacs/Earlier-Kills.html) in the Emacs manual for an explanation of `M-y` does. The important thing to remember is that you have to press `C-y` first, before you can start pressing `M-y`.
+
+### Undo and redo
+
+Command | Action
+--- | ---
+`C-/` | Undo
+`M-/` | Redo
+`C-x u` | Visualize undo tree
 
 ### Miscellaneous
 
@@ -326,6 +404,7 @@ Command | Action
 --- | ---
 `C-x C-e` | Evaluate the form before the cursor
 `C-M-x` | Evaluate the top-level form surrounding or before the cursor
+`M-:` | Enter a form to evaluate
 
 ## Interacting with Clojure code
 
@@ -362,7 +441,28 @@ Don't forget that the REPL is a regular text buffer at its core, so all of Emacs
 
 ## Helm
 
-[...]
+The `helm` package provides an interface for selecting among multiple choices that is much easier to use than Emacs' default. This interface is used for most commands that require selecting something—a buffer, a file, a command, and so on. The `helm-projectile` package extends this interface to `projectile` commands.
+
+Here is a list of frequent commands that use `helm`:
+
+Command | Action
+--- | ---
+`M-x` | Run an arbitrary command
+`C-h f` | Get documentation for a function
+`C-h v` | Get documentation for a variable
+`C-x b` | Switch the buffer of the current window
+`C-c p b` | Switch to a buffer in the current project
+`C-c p f` | Open a file in the current project
+`C-c p p` | Open a file in a different project
+`C-c p h` | Combination of `C-c p b`, `C-c p f`, and `C-c p p`
+`C-c p F` | Open a file in any project
+`C-x k` | Kill a buffer
+
+The `helm` buffer displays a list of suggestions, which you can filter by typing. There are two filtering modes: fuzzy and literal. If the text you enter has no spaces, then fuzzy filtering is used. In this mode, matching suggestions must have all the characters in your query, in order, but not necessarily contiguous. So, `ffap` would match `find-file-at-point` or `diff-backup`. If the text you enter has at least one space, then literal filtering is used. In this mode, suggestions have to contain each of the space-separated components of your query, but they can be in any order. So, `face cust` would match `customize-face` but would not `file-cache-add-directory-using-locate` (which would match if you had no space).
+
+The primary way to get to the suggestion you want in Helm is just to type more—the intelligent matching makes this very convenient—but you can also use `up` and `down` to select a candidate.
+
+You can press `C-j` to open a temporary buffer to preview the current selection. For selecting a buffer or file, this is a preview of the contents of the buffer or file. For `M-x`, `C-h f`, or `C-h v`, this is the documentation of the selected function or variable. Note that there are some commands, such as `C-x k`, where this doesn't seem to work.
 
 # Contributing
 
