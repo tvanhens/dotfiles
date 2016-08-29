@@ -1,7 +1,7 @@
 ;;------------------------------------------------------------------------------
 ;; Cask and Pallet Configuration
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;; Keep installed packages in sync with ~/.emacs.d/Cask file
