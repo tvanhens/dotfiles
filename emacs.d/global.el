@@ -25,9 +25,6 @@
 ;; Logview
 (require 'logview)
 
-;; Start fullscreen
-(toggle-frame-fullscreen)
-
 ;; Font
 (set-default-font "Inconsolata 18")
 
