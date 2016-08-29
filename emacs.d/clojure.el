@@ -6,10 +6,8 @@
 (require 'clojure-mode)
 (require 'rainbow-delimiters)
 (require 'clj-refactor)
-(require 'smartparens-config)
 
 ;; Configuration
-
 (put-clojure-indent 'match 1)
 (setq clojure-align-forms-automatically t)
 
@@ -24,6 +22,12 @@
 ;; Hooks
 
 (add-hook 'cider-mode-hook 'eldoc-mode)
-(add-hook 'clojure-mode-hook 'smartparens-strict-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'tvh-clj-mode-hook)
+
+(add-hook 'cider-repl-mode-hook 'eldoc-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+(define-clojure-indent
+  (defui '(1 nil nil (1))))
